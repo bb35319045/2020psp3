@@ -86,7 +86,7 @@ int BinarySearch(int key, City arrayCity[], int left, int right)
     int result_Binary = -1;
     
     while(left <= right){
-
+        
         pos_Binary = left + (right - left) / 2;
         if(key == arrayCity[pos_Binary].id){
             result_Binary = pos_Binary;
@@ -109,7 +109,6 @@ int main(void)
 {
     int key;
     int result;
-
     //  事前準備。データの読み込み、配列の作成
     City* arrayCity;
     int cn;
