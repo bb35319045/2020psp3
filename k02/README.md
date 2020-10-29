@@ -1,5 +1,5 @@
 # 課題2 レポート
-学籍番号　氏名
+学籍番号 353190945　氏名 松本聡浩
 
 
 ## 課題
@@ -69,14 +69,92 @@ typedef struct {
     - return値: IDが合致した配列データのindex。IDが一致するデータがない場合は-1。
 
 ## ソースコードの説明
+<InsertNewNode>
+78:動的メモリを用意
+79:データをnewCityに入れ込む
+80:nextの位置を更新させる
+81:topの位置を更新させる
 
+<DeleteNodeAt>
+うまく作動しませんでした。
+そもそもSUCCES,ERORRRを返しません。
+どこが間違えているのか教えてくださると助かります。
 
+<SearchCityByName>
+119:resultを-1で初期化
+120:posを0で初期化
+121:NodeのポインタpNodeを定義
+122:pNodeをtopの位置と合わせておく
+125:文字列を比較するためにstrcmpを使用する
+126:見つかった位置のデータをpCityに入れる
+127:resultを更新
+130:pNodeの位置を更新
+131:posを更新
+
+<SearchCityByID>
+141:resultを-1で初期化
+142:posを0で初期化
+143:NodeのポインタpNodeを定義
+144:pNodeをtopの位置と合わせておく
+147:if文で比較
+148:見つかった位置のデータをpCityに入れる
+149:resultを更新
+152:pNodeの位置を更新
+153:posを更新
 
 ## 出力結果
 
-```
-
-```
+42201, NagasakiKen, Nagasaki, 429508, 198716, 230792
+42202, NagasakiKen, Sasebo, 255439, 120198, 135241
+42203, NagasakiKen, Shimabara, 45436, 20999, 24437
+42204, NagasakiKen, Isahaya, 138078, 65029, 73049
+42205, NagasakiKen, Omura, 92757, 43938, 48819
+42207, NagasakiKen, Hirado, 31920, 14874, 17046
+42208, NagasakiKen, Matsuura, 23309, 11164, 12145
+42209, NagasakiKen, Tsushima, 31457, 15361, 16096
+42210, NagasakiKen, Iki, 27103, 15361, 16096
+42211, NagasakiKen, Goto, 37327, 17339, 19988
+42212, NagasakiKen, Saikai, 28691, 14032, 14659
+42213, NagasakiKen, Unzen, 44115, 20847, 23268
+42214, NagasakiKen, MinamiShimabara, 46535, 21574, 24961
+42307, NagasakiKen, Nagayo, 42548, 20090, 22458
+42308, NagasakiKen, Togitsu, 29804, 14326, 15478
+42321, NagasakiKen, HigashiSonogi, 8298, 3886, 4412
+42322, NagasakiKen, Kawatana, 14067, 6656, 7411
+42323, NagasakiKen, Hasami, 14891, 7079, 7812
+42383, NagasakiKen, Ojika, 2560, 1172, 1388
+42391, NagasakiKen, Sasa, 13626, 6426, 7200
+42411, NagasakiKen, ShinKamigoto, 19718, 9197, 10521
+===== Start Printing =====
+42411, NagasakiKen, ShinKamigoto, 19718, 9197, 10521
+42391, NagasakiKen, Sasa, 13626, 6426, 7200
+42383, NagasakiKen, Ojika, 2560, 1172, 1388
+42323, NagasakiKen, Hasami, 14891, 7079, 7812
+42322, NagasakiKen, Kawatana, 14067, 6656, 7411
+42321, NagasakiKen, HigashiSonogi, 8298, 3886, 4412
+42308, NagasakiKen, Togitsu, 29804, 14326, 15478
+42307, NagasakiKen, Nagayo, 42548, 20090, 22458
+42214, NagasakiKen, MinamiShimabara, 46535, 21574, 24961
+42213, NagasakiKen, Unzen, 44115, 20847, 23268
+42212, NagasakiKen, Saikai, 28691, 14032, 14659
+42211, NagasakiKen, Goto, 37327, 17339, 19988
+42210, NagasakiKen, Iki, 27103, 15361, 16096
+42209, NagasakiKen, Tsushima, 31457, 15361, 16096
+42208, NagasakiKen, Matsuura, 23309, 11164, 12145
+42207, NagasakiKen, Hirado, 31920, 14874, 17046
+42205, NagasakiKen, Omura, 92757, 43938, 48819
+42204, NagasakiKen, Isahaya, 138078, 65029, 73049
+42203, NagasakiKen, Shimabara, 45436, 20999, 24437
+42202, NagasakiKen, Sasebo, 255439, 120198, 135241
+42201, NagasakiKen, Nagasaki, 429508, 198716, 230792
+print list. items = 21
+===== Print End =====
+City ID? 42202
+the city was found at 19
+42202, NagasakiKen, Sasebo, 255439, 120198, 135241
+City Name? Nagayo
+the city was found at 7
+42307, NagasakiKen, Nagayo, 42548, 20090, 22458
 
 ## 修正履歴
 
