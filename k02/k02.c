@@ -85,15 +85,27 @@ Node* InsertNewNode(City newCity, Node* pNext)
 
 int DeleteNodeAt(Node** ppNode, int cn)
 {
-   int pos = 0;
+   int pos = 1;
    int result = -1;
    Node *pNode;
    Node *pPrev;
-   pPrev = *ppNode;
 
- while(pNode != NULL){
+   if(cn != 0){
+   pPrev = *ppNode;
+   pNode = pPrev->pNext;
+   }else{ 
+    pPrev = NULL;
+    pNode = *ppNode;
+   }
+   
+   while(pNode != NULL){
     if(pos == cn){
      pPrev->pNext = pNode->pNext;
+     free(pNode);
+     result = pos;
+        break;
+    }else if(cn == 0){
+     *ppNode = pNode->pNext;
      free(pNode);
      result = pos;
         break;
@@ -104,10 +116,10 @@ int DeleteNodeAt(Node** ppNode, int cn)
     }
  }
  if(result != -1){
-     printf("SUCCESS\n");
+     printf("\nSUCCESS\n");
  }
  else{
-     printf("ERRR\n");
+     printf("\nERRR\n");
  }
  return 0;
 }
