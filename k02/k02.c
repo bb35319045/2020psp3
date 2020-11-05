@@ -97,9 +97,10 @@ int DeleteNodeAt(Node** ppNode, int cn)
     pPrev = NULL;
     pNode = *ppNode;
     *ppNode = pNode->pNext;
-     free(pNode);
-     result = pos;
+    free(pNode);
+    result = pos;
    }
+   
    
    while(pNode != NULL){
     if(pos == cn){
@@ -112,7 +113,8 @@ int DeleteNodeAt(Node** ppNode, int cn)
      pNode = pNode->pNext;
      pos++;
     }
- }
+   }
+   
  if(result != -1){
      printf("\nSUCCESS\n");
  }
