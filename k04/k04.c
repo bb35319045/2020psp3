@@ -78,15 +78,68 @@ int LoadData(City arrayCity[])
 
 void BubbleSort(City arrayCity[], int size)
 {
-    //  ここを実装する
+    int cnt;
+    int pos;
+    City array_tmp;
 
+   while(1){
+       cnt = 0;
+       for(pos=0; pos<size-1; pos++){
+         if(arrayCity[pos].total < arrayCity[pos+1].total){  
+            array_tmp = arrayCity[pos];
+            arrayCity[pos] = arrayCity[pos+1];
+            arrayCity[pos+1] = array_tmp;
+            cnt++;
+        }else{   
+       }
+   }
+       if(cnt == 0){
+           break;
+       }
+       else{       
+       } 
+   }
 }
 
 
 void QuickSort(City arrayCity[], int left, int right)
 {
-    //  ここを実装する
+    City pivot;
+    City array_tmp;  
 
+    int index_left;
+    int index_right;
+    int size = right  - left + 1;
+
+    if(size > 1){
+       pivot = arrayCity[left];   
+       
+       while(1){
+         index_left = left + 1;
+         index_right = right;    
+         
+         while(pivot.seafood >= arrayCity[index_left].seafood){
+            index_left++;          
+         }
+         while(pivot.seafood < arrayCity[index_right].seafood){
+            index_right--;
+         } 
+         if(index_left >= index_right){
+            break;
+         }else{
+            array_tmp = arrayCity[index_left];
+            arrayCity[index_left] = arrayCity[index_right];
+            arrayCity[index_right] = array_tmp;
+         }
+       }
+      
+       array_tmp = pivot;
+       pivot = arrayCity[index_right];
+       arrayCity[index_right] = array_tmp;
+
+       QuickSort(arrayCity, left, index_right-1);
+       QuickSort(arrayCity, index_right+1, right);
+    }
 }
 
 
@@ -127,12 +180,16 @@ int main(void)
     printf("===== Sorted by seafood =====\n");
     QuickSort(arrayCity, 0, MAX_CITY - 1);
     PrintArray(arrayCity, MAX_CITY);
-   
-//    MergeSort(arrayCity, 0, MAX_CITY - 1);
-//    HeapSort(arrayCity, MAX_CITY);
+
+    //    HeapSort(arrayCity, MAX_CITY);
+    printf("===== Sorted by meat =====\n");
+    HeapSort(arrayCity, MAX_CITY);
     PrintArray(arrayCity, MAX_CITY);
 
-
+    //    MerageSort(arrayCity, 0, MAX_CITY-1);
+    printf("===== Sorted by liquor =====\n");
+    MergeSort(arrayCity, 0, MAX_CITY - 1);
+    PrintArray(arrayCity, MAX_CITY);
 
     //  後処理
     free(arrayCity);
