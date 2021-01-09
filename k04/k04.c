@@ -144,33 +144,41 @@ void QuickSort(City arrayCity[], int left, int right)
 void ParticalHeap(City arrayCity[], int size, int node){
     int left;
     int right;
+    int count = 0;
+    City array_check;
     City array_tmp;
 
     left = node * 2 + 1;
     right = node * 2 + 2;
 
-    if((left > size && right > size) || (arrayCity[node].meat < arrayCity[left].meat && arrayCity[node].meat < arrayCity[right].meat)){  
-    
-    }else if(left < size && right < size){
-        if(arrayCity[left].meat  <= arrayCity[right].meat){
-         array_tmp = arrayCity[node];
-         arrayCity[node] = arrayCity[left];
-         arrayCity[left] = array_tmp; 
-         ParticalHeap(arrayCity, size, left);
-        }else{
-         array_tmp = arrayCity[node];
-         arrayCity[node] = arrayCity[right];
-         arrayCity[right] = array_tmp; 
-         ParticalHeap(arrayCity, size, right); 
+    array_check = arrayCity[node];
+
+    if(left <= size){ 
+        if(arrayCity[left].meat  < arrayCity[node].meat){
+         array_check = arrayCity[left];
         }
-    }else{
-       if(arrayCity[left].meat  > arrayCity[node].meat){
-         array_tmp = arrayCity[node];
-         arrayCity[node] = arrayCity[left];
-         arrayCity[left] = array_tmp; 
-         ParticalHeap(arrayCity, size, left); 
+    }
+    
+    if(right <= size){
+       if(arrayCity[right].meat < array_check.meat){
+         array_check = arrayCity[right];
+         count++; 
        }
     }
+
+    if(array_check.meat != arrayCity[node].meat){
+        if(count == 1){
+        array_tmp = arrayCity[right];
+        arrayCity[right] = arrayCity[node];
+        arrayCity[node] = array_tmp;
+        ParticalHeap(arrayCity, size, right);
+     }else{
+        array_tmp = arrayCity[left];
+        arrayCity[left] = arrayCity[node];
+        arrayCity[node] = array_tmp;
+        ParticalHeap(arrayCity, size, left); 
+     }
+}
 }
 
 void BuildHeap(City arrayCity[], int size){
@@ -201,28 +209,31 @@ void HeapSort(City arrayCity[], int size){
 
 void Merge(City arrayCity[], int left, int mid, int right){
     int i,j,k;
+    
     City left_buff[mid-left+1];
     City right_buff[right-mid];
 
-    
-    for (i = left; i <= mid; i++){ 
-     left_buff[i] = arrayCity[i]; 
-    } 
-    for (j = mid+1; j <= right; j++){
-      right_buff[j] = arrayCity[j]; 
+    for (i = 0; i <= mid-left; i++){ 
+     left_buff[i] = arrayCity[left+i]; 
     }
-    i = left; j = mid+1;
-    
-    for (k = left; k <= right; k++){
-      if (left_buff[i].liquor < right_buff[j].liquor){ 
-        arrayCity[k] = left_buff[i]; 
-        i++;
-    }else{ 
-    arrayCity[k] = right_buff[j];
-    j++; 
+
+    for (j = 0; j < right-mid; j++){
+      right_buff[j] = arrayCity[mid+1+j];
     }
-   }
+    
+    i = 0;
+    j = 0;
+    
+  for (k = left; k <= right; k++) {
+        if ((left_buff[i].liquor <= right_buff[j].liquor && i <= mid-left)||(j >= right-mid && i <= mid-left)){
+            arrayCity[k] = left_buff[i];
+            i++;
+        }else{
+            arrayCity[k] = right_buff[j];
+            j++;
+    }
   }
+}
 
 
 void MergeSort(City arrayCity[], int left, int right){
