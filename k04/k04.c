@@ -144,41 +144,30 @@ void QuickSort(City arrayCity[], int left, int right)
 void ParticalHeap(City arrayCity[], int size, int node){
     int left;
     int right;
-    int count = 0;
-    City array_check;
+    int min = node;
     City array_tmp;
 
     left = node * 2 + 1;
     right = node * 2 + 2;
 
-    array_check = arrayCity[node];
-
-    if(left <= size){ 
-        if(arrayCity[left].meat  < arrayCity[node].meat){
-         array_check = arrayCity[left];
+    if(left < size){ 
+        if(arrayCity[left].meat  > arrayCity[node].meat){
+         min = left;
         }
     }
     
-    if(right <= size){
-       if(arrayCity[right].meat < array_check.meat){
-         array_check = arrayCity[right];
-         count++; 
+    if(right < size){
+       if(arrayCity[right].meat > arrayCity[min].meat){
+         min = right;
        }
     }
 
-    if(array_check.meat != arrayCity[node].meat){
-        if(count == 1){
-        array_tmp = arrayCity[right];
-        arrayCity[right] = arrayCity[node];
+    if(min != node){
+        array_tmp = arrayCity[min];
+        arrayCity[min] = arrayCity[node];
         arrayCity[node] = array_tmp;
-        ParticalHeap(arrayCity, size, right);
-     }else{
-        array_tmp = arrayCity[left];
-        arrayCity[left] = arrayCity[node];
-        arrayCity[node] = array_tmp;
-        ParticalHeap(arrayCity, size, left); 
+        ParticalHeap(arrayCity, size, min);
      }
-}
 }
 
 void BuildHeap(City arrayCity[], int size){
@@ -186,24 +175,26 @@ void BuildHeap(City arrayCity[], int size){
  int last_node;
  int i;
 
- last_node = size /2 - 1;
+ last_node = (size /2 ) - 1;
 
  for(i=last_node; i>=0; i--){
-    ParticalHeap(arrayCity, size, last_node);   
+    ParticalHeap(arrayCity, size, i);   
  }
 }
 
 void HeapSort(City arrayCity[], int size){
-     int size_Heap;
      City array_tmp;
      BuildHeap(arrayCity, size);
      
-     for(size_Heap=size; size_Heap>1; size_Heap--){
-      array_tmp = arrayCity[0];
-      arrayCity[0] = arrayCity[size-1];
-      arrayCity[size-1] = array_tmp;
+     while(size>1){
+      size--;
 
-      BuildHeap(arrayCity, size-1);
+      array_tmp = arrayCity[0];
+      arrayCity[0] = arrayCity[size];
+      arrayCity[size] = array_tmp;
+
+      BuildHeap(arrayCity, size);
+      
     }
 }
 
