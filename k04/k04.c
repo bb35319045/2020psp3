@@ -107,7 +107,6 @@ void QuickSort(City arrayCity[], int left, int right)
     int index_left;
     int index_right;
     int size = right - left;
-
     
     if(size > 0){
        pivot = arrayCity[left];  
