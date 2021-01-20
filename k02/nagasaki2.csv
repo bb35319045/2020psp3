@@ -6,7 +6,11 @@
 42207,NagasakiKen,Hirado,31920,14874,17046
 42208,NagasakiKen,Matsuura,23309,11164,12145
 42209,NagasakiKen,Tsushima,31457,15361,16096
+<<<<<<< HEAD
 42210,NagasakiKen,Iki,27103	12860,14243
+=======
+42210,NagasakiKen,Iki,27103,12860,14243
+>>>>>>> upstream/master
 42211,NagasakiKen,Goto,37327,17339,19988
 42212,NagasakiKen,Saikai,28691,14032,14659
 42213,NagasakiKen,Unzen,44115,20847,23268
@@ -18,4 +22,8 @@
 42323,NagasakiKen,Hasami,14891,7079,7812
 42383,NagasakiKen,Ojika,2560,1172,1388
 42391,NagasakiKen,Sasa,13626,6426,7200
+<<<<<<< HEAD
 42411,NagasakiKen,Shinkamigoto,19718,9197,10521
+=======
+42411,NagasakiKen,ShinKamigoto,19718,9197,10521
+>>>>>>> upstream/master
