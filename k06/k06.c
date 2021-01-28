@@ -68,12 +68,65 @@ int LoadData(Menu arrayItem[])
 
 void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
 {
-    int nap_value[items+1][nap_size + 1];   //  動的計画法で作成するテーブル
-    int history[items+1][nap_size + 1];     //  履歴を保存するテーブル(選択したメニューを探すときに使用)
+    int i,k,j,l;
+    int pre_j,cur_j;
+    int nap_value[items+1][nap_size+1];   //  動的計画法で作成するテーブル
+    int history[items+1][nap_size+1];     //  履歴を保存するテーブル(選択したメニューを探すときに使用)
+    int calorie_tmp=0,price_tmp=0;
 
-    //　ここを実装する
+    for(i=0; i<=items; i++){
+        for(k=0; k<=nap_size; k++){
+            nap_value[i][k] = 0;
+        } 
+    }
 
+    for(i=0; i<=items; i++){
+        for(k=0; k<=nap_size; k++){
+            history[i][k] = 0;
+        } 
+    }
 
+    for(i=1; i<=items; i++){  
+        
+        for(k=1; k<arrayItem[i-1].price; k++){
+            nap_value[i][k] = nap_value[i-1][k];
+            history[i][k] = k;        
+        }
+        for(j=k; j<=nap_size; j++){
+            if(nap_value[i-1][j] < nap_value[i-1][j-arrayItem[i-1].price] + arrayItem[i-1].calorie){
+                nap_value[i][j] = nap_value[i-1][j-arrayItem[i-1].price] + arrayItem[i-1].calorie;
+                history[i][j] = j - arrayItem[i-1].price;
+            }else{
+                nap_value[i][j] = nap_value[i-1][j];
+                history[i][j] = j;
+            }
+        }
+    }
+
+    printf("total calorie: %dkcal\n",nap_value[i-1][j-1]);
+
+    cur_j = nap_size;
+    printf("========================================================\n");
+    
+    for(l=items; l>0; l--){
+        pre_j = history[l][cur_j];
+        if (pre_j != cur_j){
+            printf("%d,%s,%s,%d,",arrayItem[l-1].id,arrayItem[l-1].name,arrayItem[l-1].type,arrayItem[l-1].price);
+            printf("%d,%.1lf\n",arrayItem[l-1].calorie,arrayItem[l-1].salt);
+            
+            calorie_tmp = calorie_tmp + arrayItem[l-1].calorie;
+            price_tmp = price_tmp + arrayItem[l-1].price;
+
+            cur_j = pre_j;
+        }
+    }
+    printf("========================================================\n");
+
+    if((calorie_tmp == nap_value[i-1][j-1])&&(price_tmp <= nap_size)){
+        printf("success\n");
+    }else{
+        printf("failure\n");
+    }
 }
 
 
